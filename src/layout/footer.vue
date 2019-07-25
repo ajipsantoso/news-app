@@ -27,17 +27,19 @@
             Subscribe now and stay updated
           </v-flex>
           <v-flex>
-            <v-layout row fill-height>
+            <v-layout row fill-height pa-3>
               <v-flex xs5>
                 <v-text-field
                   dark
                   label="Email Address"
+                  hide-details
                   single-line
                   outlined
                 ></v-text-field>
               </v-flex>
-              <v-flex xs5 mx-7>
-                <v-btn large dark depressed color="orange">Subscribe</v-btn>
+              <v-spacer></v-spacer>
+              <v-flex xs5>
+                <v-btn x-large dark depressed color="orange">Subscribe</v-btn>
               </v-flex>
             </v-layout>
           </v-flex>

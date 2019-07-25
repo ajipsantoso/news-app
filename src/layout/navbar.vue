@@ -36,7 +36,7 @@
     <v-btn class="mx-2" rounded dark color="primary">
       Daftar
     </v-btn>
-    <v-btn class="mx-2" rounded outlined color="primary">
+    <v-btn class="mx-2" rounded outlined color="primary" :to="'/login'">
       Masuk
     </v-btn>
   </v-app-bar>

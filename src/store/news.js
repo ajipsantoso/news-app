@@ -17,7 +17,7 @@ export default {
       return api.news
         .allNews(params)
         .then(({ data }) => {
-          // console.log('uhuy',data.data)
+          console.log('uhuy',data.data)
           commit('set_allNews', data.data);
           // commit('')
         })

@@ -1,8 +1,8 @@
-import { NewsApi, ApiKey } from './index';
+import { ApiHead } from './index';
 
 export default {
   allNews({ page, sortBy, descending, search }) {
-    return NewsApi.get(`/posts`, {
+    return ApiHead.get(`/posts`, {
       params: {
         page: page || 1,
         sortBy: sortBy || 'id',
@@ -11,7 +11,10 @@ export default {
       }
     });
   },
-  headlineNewsCategory(category) {
-    return NewsApi.get(`country=id&category=${category}&apiKey=${ApiKey}`);
+  newsById(id) {
+    return ApiHead.get(`/posts/${id}`);
+  },
+  createNews(data) {
+    return ApiHead.get(`/posts`, data);
   }
 };

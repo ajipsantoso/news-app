@@ -15,8 +15,30 @@ export default new Router({
           path: '/',
           name: 'dashboard',
           component: () => import('../pages/dashboard/')
+        },
+        {
+          path: '/news/:id',
+          name: 'detailNews',
+          component: () => import('../pages/news/')
+        },
+        {
+          path: '/news/create',
+          name: 'createNews',
+          component: () => import('../pages/news/createNews.vue')
+        },
+        {
+          path: '/news/*',
+          redirect: '/'
         }
       ]
+    },
+    {
+      path: '/login',
+      component: () => import('../pages/login/login.vue')
+    },
+    {
+      path: '/register',
+      component: () => import('../pages/login/register.vue')
     }
     // {
     //   path: "/about",

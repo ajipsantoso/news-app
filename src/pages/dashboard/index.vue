@@ -1,46 +1,21 @@
 <template>
   <v-layout>
     <v-container>
-      <trendingNews />
-      <v-layout>
-        <!-- {{allNews}} -->
-      </v-layout>
+      <trendingNews class="mb-10" />
+      <latestNews />
     </v-container>
   </v-layout>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+// import { mapGetters } from 'vuex';
 import TrendingNews from './Trending';
+import LatestNews from './LatestNews';
 
 export default {
   components: {
     TrendingNews,
+    LatestNews
   },
-  data: () => ({
-    news: [
-      {
-        src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-      },
-      {
-        src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-      },
-      {
-        src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-      },
-      {
-        src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-      },
-    ],
-  }),
-  computed: {
-    ...mapGetters(['allNews']),
-  },
-  async created() {
-    await this.$store.dispatch('allNewsGet',{})
-    console.log(this.allNews)
-  },
-  mounted() {
-    
-  }
+  data: () => ({})
 };
 </script>
