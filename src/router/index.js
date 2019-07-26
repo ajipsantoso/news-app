@@ -14,31 +14,54 @@ export default new Router({
         {
           path: '/',
           name: 'dashboard',
-          component: () => import('../pages/dashboard/')
+          component: () => import('../pages/dashboard/'),
+          meta: {
+            requiresAuth: true,
+          }
         },
         {
           path: '/news/:id',
           name: 'detailNews',
-          component: () => import('../pages/news/')
+          component: () => import('../pages/news/'),
+          meta: {
+            requiresAuth: true,
+          }
         },
         {
           path: '/news/create',
           name: 'createNews',
-          component: () => import('../pages/news/createNews.vue')
+          component: () => import('../pages/news/createNews.vue'),
+          meta: {
+            requiresAuth: true,
+          }
         },
         {
           path: '/news/*',
-          redirect: '/'
+          redirect: '/',
+          meta: {
+            requiresAuth: true,
+          }
         }
-      ]
+      ],
+      meta: {
+        requiresAuth: true,
+      }
     },
     {
+      name: 'login',
       path: '/login',
-      component: () => import('../pages/login/login.vue')
+      component: () => import('../pages/login/login.vue'),
+      meta: {
+        requiresGuest: true,
+      },
     },
     {
+      name: 'register',
       path: '/register',
-      component: () => import('../pages/login/register.vue')
+      component: () => import('../pages/login/register.vue'),
+      meta: {
+        requiresGuest: true,
+      },
     }
     // {
     //   path: "/about",

@@ -33,12 +33,27 @@
     <v-btn class="mx-2" small fab dark color="orange">
       <v-icon>mdi-magnify</v-icon>
     </v-btn>
-    <v-btn class="mx-2" rounded dark color="primary">
+    <!-- <v-btn class="mx-2" rounded dark color="primary">
       Daftar
-    </v-btn>
-    <v-btn class="mx-2" rounded outlined color="primary" :to="'/login'">
-      Masuk
-    </v-btn>
+    </v-btn> -->
+    <v-menu offset-y>
+      <template v-slot:activator="{ on }">
+        <v-btn class="mx-2" small fab outlined color="primary" v-on="on">
+          <v-icon>mdi-account</v-icon>
+        </v-btn>
+      </template>
+      <v-card>
+        <!-- <v-list>
+          <v-list-item>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
+        </v-list> -->
+        <v-card-action>
+          <v-btn flat @click="logout">Logout</v-btn>
+        </v-card-action>
+      </v-card>
+      
+    </v-menu>
   </v-app-bar>
 </template>
 <script>
@@ -52,7 +67,15 @@ export default {
       { text: `Sport`, to: `/#` },
       { text: `Other`, to: `/#` }
     ]
-  })
+  }),
+  methods: {
+    async logout() {
+      let res = await this.$store.dispatch('logout');
+      if (res) {
+        this.$router.push({path: '/login'})
+      }
+    }
+  }
 };
 </script>
 <style>

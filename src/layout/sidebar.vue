@@ -31,13 +31,27 @@
     </v-flex>
 </template>
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  props: ['allNews'],
+  // props: ['allNews'],
   methods: {
     newsDetail(id) {
       this.$router.push({path:`/news/${id}`});
     },
   },
+  computed: {
+    ...mapGetters(['allNews'])
+  },
+  async created() {
+    await this.$store.dispatch('allNewsGet', {});
+  }
 }
 </script>
+<style>
+.titleBar {
+  border-bottom: 3px solid #60b7ff;
+}
+</style>
+
 

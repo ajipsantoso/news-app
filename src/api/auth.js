@@ -7,7 +7,10 @@ export default {
   register(data) {
     return ApiHead.post(`/auth/register`, data);
   },
-  me(data){
+  logout() {
+    return ApiHead.get(`/auth/logout`)
+  },
+  me(){
     return ApiHead.get(`/auth/me`);
   }
 };

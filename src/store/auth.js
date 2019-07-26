@@ -4,7 +4,8 @@ import token from '../utils/token'
 export default {
   state: {
     user: null,
-    token: token.get()
+    token: token.get(),
+    isLogedIn: token.exists()
   },
   mutations: {
     set_user(state, data) {
@@ -12,6 +13,9 @@ export default {
     },
     set_token(state, token) {
       state.token = token;
+    },
+    set_Logedin(state, status) {
+      state.isLogedIn = status;
     }
   },
   actions: {
@@ -36,22 +40,44 @@ export default {
         });
     },
     register({ commit }, credentials) {
-        return api.auth
-          .register(credentials)
-          .then(({ data }) => {
-            console.log(data)
-            setAccessToken(data.data.access_token);
-            token.set(data.data.access_token);
-            commit('set_user', data.data);
-            commit('set_token', data.data.access_token);
+      return api.auth
+        .register(credentials)
+        .then(({ data }) => {
+          console.log(data)
+          setAccessToken(data.data.access_token);
+          token.set(data.data.access_token);
+          commit('set_user', data.data);
+          commit('set_token', data.data.access_token);
+          return data;
+        })
+        .catch(err => {
+          return false;
+        });
+    },
+    logout({ commit }){
+      return api.auth
+        .logout()
+        .then(({ data, status }) => {
+          if (status === 200) {
+            token.clear();
+            commit('set_Logedin',false);
+            commit('set_token',null);
+            commit('set_user',null);
             return data;
-          })
-          .catch(err => {
+          }
+          else {
             return false;
-          });
-      }
+          }
+        })
+        .catch((err)=>{
+          console.log(err);
+          return false;
+        })
+    }
   },
   getters: {
-    user: state => state.user
+    user: state => state.user,
+    token: state => state.token,
+    isLogedIn: state => state.isLogedIn
   }
 };
